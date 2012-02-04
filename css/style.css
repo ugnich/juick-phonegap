@@ -1,0 +1,14 @@
+.ui-li-desc {
+    white-space: normal;
+    font-size: medium;
+}
+
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb {
+    padding-left: 56px;
+}
+
+.ui-li-thumb {
+    left: 10px;
+    top: 20px;
+}
+

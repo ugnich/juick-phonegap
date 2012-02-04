@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.juick.phonegap" version="0.0.1">
+    <name>Juick</name>
+    <description>Client for microblogging service Juick.com</description>
+    <author href="http://juick.com">Juick</author>
+    <icon src="img/icon.png" gap:role="default"/>
+    <feature name="http://api.phonegap.com/1.0/network"/>
+</widget>
