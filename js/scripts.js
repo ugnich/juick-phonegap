@@ -2,6 +2,8 @@ $('#main').live('pageshow', function(event) {
     $('#main ul').empty();
 
     $.mobile.showPageLoadingMsg();
+    $.support.cors = true;
+    $.mobile.allowCrossDomainPages = true;
 
     $.getJSON("http://api.juick.com/messages",function(data) {
         $.each(data, function(i,item) {
@@ -31,6 +33,8 @@ $('#thread').live('pageshow', function(event,data) {
     $('#thread h1').empty();
 
     $.mobile.showPageLoadingMsg();
+    $.support.cors = true;
+    $.mobile.allowCrossDomainPages = true;
 
     $.getJSON("http://api.juick.com/thread?mid="+mid,function(data) {
         var title=false;
