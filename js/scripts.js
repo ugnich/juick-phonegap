@@ -1,7 +1,12 @@
-$('#main').live('pageshow', function(event) {
+$('#main').live('pagebeforeshow', function(event,data) {
+    if(data.prevPage.length>0) return;
+    if(navigator.splashscreen) navigator.splashscreen.hide();
     $('#main ul').empty();
+});
 
-    $.mobile.showPageLoadingMsg();
+$('#main').live('pageshow', function(event,data) {
+    if(data.prevPage.length>0) return;
+    $.mobile.loading('show');
     $.support.cors = true;
     $.mobile.allowCrossDomainPages = true;
 
@@ -19,20 +24,22 @@ $('#main').live('pageshow', function(event) {
             $('#main ul').append(html);
         });
         $('#main ul').listview('refresh');
-        $.mobile.hidePageLoadingMsg();
+        $.mobile.loading('hide');
     });
 });
 
+$('#thread').live('pagebeforeshow', function(event,data) {
+    $('#thread ul').empty();
+    $('#thread h1').empty();
+});
+
 $('#thread').live('pageshow', function(event,data) {
-    var mid=getParameterByName("mid");
+    var mid=$.mobile.pageData.mid;
     if(!mid) {
         return;
     }
 
-    $('#thread ul').empty();
-    $('#thread h1').empty();
-
-    $.mobile.showPageLoadingMsg();
+    $.mobile.loading('show');
     $.support.cors = true;
     $.mobile.allowCrossDomainPages = true;
 
@@ -55,7 +62,7 @@ $('#thread').live('pageshow', function(event,data) {
             $('#thread ul').append(html);
         });
         $('#thread ul').listview('refresh');
-        $.mobile.hidePageLoadingMsg();
+        $.mobile.loading('hide');
     });
 });
 
@@ -63,16 +70,4 @@ function juickFormatText(txt) {
     txt=txt.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;");
     txt=txt.replace(/\n/g,"<br/>");
     return txt;
-}
-
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-    var regexS = "[\\?&]" + name + "=([^&#]*)";
-    var regex = new RegExp(regexS);
-    var results = regex.exec(window.location.href);
-    if(results == null) {
-        return null;
-    } else {
-        return decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
 }
