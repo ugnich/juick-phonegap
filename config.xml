@@ -4,5 +4,6 @@
     <description>Client for microblogging service Juick.com</description>
     <author href="http://juick.com">Juick</author>
     <icon src="img/icon.png" gap:role="default"/>
+    <preference name="phonegap-version" value="2.0.0" />
     <feature name="http://api.phonegap.com/1.0/network"/>
 </widget>
