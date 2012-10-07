@@ -1,11 +1,11 @@
 $('#main').live('pagebeforeshow', function(event,data) {
     if(data.prevPage.length>0) return;
     if(navigator.splashscreen) navigator.splashscreen.hide();
-    $('#main ul').empty();
 });
 
 $('#main').live('pageshow', function(event,data) {
     if(data.prevPage.length>0) return;
+    setTimeout(function() {
     $.mobile.loading('show');
     $.support.cors = true;
     $.mobile.allowCrossDomainPages = true;
@@ -26,6 +26,7 @@ $('#main').live('pageshow', function(event,data) {
         $('#main ul').listview('refresh');
         $.mobile.loading('hide');
     });
+    }, 1000);
 });
 
 $('#thread').live('pagebeforeshow', function(event,data) {
